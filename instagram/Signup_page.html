@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instagram</title></head>
+    <style>
+        .box {
+            background-color: black;
+            border-radius: 30px;
+            padding: 30px;
+            justify-content:center;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: url("tech.webp");
+            color: yellow;
+            border: none;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        .input {
+            border-radius: 20px;
+        }
+
+        .input input::placeholder {
+            color: white;
+        }
+        
+    </style>
+ <script>
+    var currentPage = 1; // Track the current page
+    var totalPage = 2; // Total number of pages
+
+    // Function to show next page
+    function showNextPage() {
+        if (currentPage < totalPage && valid()) {
+            currentPage++;
+            document.getElementById('basicDetailsPage').style.display = 'none';
+            document.getElementById('usernamePasswordPage').style.display = 'block';
+        }
+    }
+
+    // Function to show previous page
+    function showPreviousPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            document.getElementById('basicDetailsPage').style.display = 'block';
+            document.getElementById('usernamePasswordPage').style.display = 'none';
+        }
+    }
+
+    // Validation function
+    success=true;
+    function valid() {
+        let errorMessage = document.getElementById("error-message");
+        let errorMessage1 = document.getElementById("error-message1");
+        let errorMessage2 = document.getElementById("error-message2");
+        let errorMessage3 = document.getElementById("error-message3");
+        let errorMessage4= document.getElementById("error-message4");
+        let errorMessage5 = document.getElementById("error-message5");
+        let errorMessage6 = document.getElementById("error-message6");
+        let errorMessage7 = document.getElementById("error-message7");
+
+
+        if (currentPage === 1) {
+            if (document.frm.first.value == "") {
+                document.frm.first.style.border = "3px red solid";
+                errorMessage.textContent = "<< First name can't be empty";
+                return false;
+            }
+            if(document.frm.gender[0].checked==false && document.frm.gender[1].checked==false)
+       {
+       alert("select your gender");
+       return false;
+       }
+       if(document.frm.last.value== "")
+       {
+        document.frm.last.style.border="3px red solid";
+        errorMessage2.textContent = "<< Last name can't be empty"; 
+        return false;
+        
+       }
+              if(document.frm.mail.value== "")
+       {
+        document.frm.mail.style.border="3px red solid";
+        errorMessage3.textContent = "<< Enter valid email-id"; 
+        return false;
+       }
+       
+       if(document.frm.select.value=="State/UT")
+       {
+        alert("select state");
+        return false;
+       }
+            // Add other validations for basic details here
+        } else if (currentPage === 2) {
+            let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*_=+-]).{8,16}$/;
+            if (document.frm.uname.value == "") {
+                document.frm.uname.style.border = "2px red solid";
+                errorMessage7.textContent = "<< Enter correct username";
+                return false;
+            }
+            if (document.frm.pp.value !== document.frm.pi.value) {
+        alert("Passwords do not match. Please try again.");
+        return false;
+    }
+            
+if (!passwordPattern.test(document.frm.pp.value)) {
+    document.frm.pp.style.border = "2px red solid";
+    errorMessage4.textContent = "<< Must be 8-16 characters long, at least one uppercase, one lowercase,one digit,@/!";
+    return false;
+} 
+if(document.frm.phone.value== "")
+       {
+        document.frm.phone.style.border="3px red solid";
+        errorMessage5.textContent = "<< Phone number can't be empty"; 
+        return false;
+        
+       }
+    }
+    return true;
+}
+</script>
+<body>
+    <div class="box">
+        <form name="frm" method="post" id="signupForm" >
+            <h2 style="text-align: center; font-size: 1.15cm">SIGN UP</h2>
+            <!-- Basic Details Page -->
+            <div id="basicDetailsPage">
+                <label>Enter your first Name:</label>
+                <input type="text" placeholder="Enter your first name" name="first" class="input">
+                <span id="error-message" class="error-message"></span><br><br>
+
+                <label> Enter your last Name :	</label><input type="text" placeholder=" Enter your last name" id="last" class="input">
+                <span id="error-message2" class="error-message"></span></br>
+                </br>
+                <label>Enter your email address :	</label><input type="email" placeholder=" Enter valid email-id"  pattern="/\S+@\S+\.\S+/" id="mail" class="input">
+                <!--<span id="error-message3" class="error-message"></span>-->
+                </br>
+                </br>
+                <label>Select your Gender</label>
+                <input type="radio" name="gender" value="M"/><label for="M">Male</label>
+                <input type="radio" name="gender" value="F"/><label for="F">Female</label>
+                </br>
+                </br>
+                <label>Select your State/Union Territory</label> 
+                <select id="select" class="input">
+                <option><label>State/UT</label></option>
+                <option><label>Andhra Pradesh</label></option>
+                <option> <label>Arunachal Pradesh</label></option>
+                <option> <label>Assam</label></option>
+                <option><label>Bihar</label></option>
+                <option> <label>Chhattisgarh</label></option>
+                <option> <label>Goa</label></option>
+                <option><label>Gujarat</label></option>
+                <option> <label>Haryana</label></option>
+                <option> <label>Himachal Pradesh</label></option>
+                <option><label>Jharkhand</label></option>
+                <option> <label>Karnataka</label></option>
+                <option> <label>Kerala</label></option>
+                <option><label>Madhya Pradesh</label></option>
+                <option> <label>Maharashtra</label></option>
+                <option> <label>Manipur</label></option>
+                <option><label>Meghalaya</label></option>
+                <option> <label>Mizoram</label></option>
+                <option> <label>Nagaland</label></option>
+                <option><label>Odisha</label></option>
+                <option> <label>Punjab</label></option>
+                <option> <label>Rajasthan</label></option>
+                <option><label>Sikkim</label></option>
+                <option> <label>Tamil Nadu</label></option>
+                <option> <label>Telangana</label></option>
+                <option><label>Tripura</label></option>
+                <option> <label>Uttar Pradesh</label></option>
+                <option> <label>Uttarakhand</label></option>
+                <option><label>West Bengal</label></option>
+                <option> <label>Andaman and Nicobar Islands</label></option>
+                <option> <label>Chandigarh</label></option>
+                <option><label>Dadra & Nagar Haveli and Daman & Diu</label></option>
+                <option> <label>Delhi</label></option>
+                <option> <label>Jammu and Kashmir</label></option>
+                <option><label>Lakshadweep</label></option>
+                <option> <label>Puducherry</label></option>
+                <option> <label>Ladakh</label></option>
+                </select>
+                </br>
+                </br>
+                </br>
+                <label>Date of Birth :	</label><input type="date" placeholder=" Enter your DOB" id="dob" class="input">
+                </br>
+                </br>
+
+                <button type="button" onclick="if(valid()) { showNextPage(); }">Next</button>
+
+            </div>
+
+            <!-- Username/Password Page (Initially Hidden) -->
+            <div id="usernamePasswordPage" style="display: none;">
+                <label>Choose a username:</label>
+                <input type="text" placeholder="Create a username" id="uname" class="input">
+                <span id="error-message7" class="error-message"></span><br>
+
+                <label>Create a password: </label><input type="password" placeholder="Create a strong passsword" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}" id="pp" class="input">
+                <span id="error-message4" class="error-message"></span>
+                <br>
+                <br>
+                <label>Confirm password: </label><input type="password" placeholder="Type the same passsword" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}" class="input" id="pi">
+<br>
+<br>
+                <label>Contact Number :	</label><input type="tel" placeholder=" Enter contact number" id="phone" class="input">
+                <span id="error-message5" class="error-message"></span>
+                </br>
+                <label>Verify OTP   </label><input type="number" placeholder=" Enter the valid otp" id="otp" class="input">
+                <span id="error-message6" class="error-message"></span>
+                </br>
+                <br>
+                <button type="button" onclick="showPreviousPage()">Previous</button>
+                <input type="submit" onclick="if(valid()) { showNextPage(); }" style="margin-left: 10%; width: 400px; background-color: yellow; border-radius: 20px;">
+                <a href="file:///C:/Users/Hp/OneDrive/Documents/OneDrive/Documents/Sem%202/WPP/instagram/Login%20Page.html" style="margin-left:40%; color:yellow;">Go to Login Page</a>
+            </div>
+        </form>
+       
+    </div>
+
+   
+      
+</body>
+</html>
